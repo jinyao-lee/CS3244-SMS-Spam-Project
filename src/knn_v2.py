@@ -21,15 +21,13 @@ with open(data_dir, encoding="latin-1") as csvFile:
 # Shuffle data, then 20% of data to be validation set (at the very end of data)
 ####
 import random
-# random.shuffle(trainingSet)
+random.shuffle(trainingSet)
 for i in range(len(trainingSet)-1, int(0.8*len(trainingSet)), -1):
     validationSet.append(trainingSet[i])
     trainingSet.pop
 
 print("Size of training set = " + str(len(trainingSet)))
 print("Size of validation set = " + str(len(validationSet)))
-
-
 
 ####
 # Following functions required to train and validate using KNN
@@ -88,7 +86,7 @@ def judge(knn):
 
 correct = 0
 wrong = 0    
-k = 131
+k = 15
 
 # for tracking
 currIndex = 0
@@ -109,9 +107,9 @@ for d in validationSet:
 
 accuracy = correct / (correct + wrong)
 
-print("\ncorrect",correct)
-print("\nwrong",wrong)
-print("\naccuracy",accuracy)
+print("\ncorrect: ",correct)
+print("\nwrong: ",wrong)
+print("\ntraining data accuracy: ",accuracy)
 
 
 
@@ -122,8 +120,12 @@ print("\naccuracy",accuracy)
 def tryYourOwnMessage(message):
     d = ['', message, '']
     knn = findKNN(trainingSet, d, k)
-    print("RESULT OF: " + message + '\n' + judge(knn))
+    print("RESULT OF: -\n" + message + '\n=== ' + judge(knn) + ' ===\n')
 
 tryYourOwnMessage("<Rewards> StarHub: Starting from 100 points, you can indulge in these irresistible 1-for-1 deals with Dunkin Donuts, Ellenborough market cafe, Chicken Up& more. Grab them now at www.starhub.com/redeem . T&Cs apply. To UNSUB, reply UNSUB")
 tryYourOwnMessage("INSTANT BET, INSTANT CASH FOR ONLINE SPORTSBOOK ONLINE LIVE CASINO/SLOTS HORSE RACING CLICK LINK TO APPLY http:api.whatsapp.com/send?phone=6582818137")
 tryYourOwnMessage("Hi bro, just now u said that u need a soccer betting account, u prefer m8 or cmd? By the way, I hv horse racing, live casino and slot games too. U keen? Max")
+tryYourOwnMessage("<Rewards> StarHub: Get your hands on our 1-for-1 lunch buffet, Korean chicken wings, Bingsoo dessert to keep cool in this hot weather & more! Check it out at www.starhub.com/redeem now. T&Cs apply. To UNSUB, reply UNSUB")
+tryYourOwnMessage("🔥We say YES when the bank say No🔥 💲Let us support your loan 🏧Flash approval + Instant Cash 🏦Offering Monthly Loan Up To 20 Months Repayment Term         💰💰💰💰💰💰💰💰 $5000 x 20Mnths =$320,    $8000 x 20Mnths =$480, $10,000 x 20Mnths = $600 Consolidate Loan    ☎Enquiries Call  +65 8627-342 Whatsapp        +65 8279-4186")
+tryYourOwnMessage("💲💲💲Ucash Credit💲💲💲 www.ucash77.com 🔥Personal Loan Flexible repayment singapore 🔥Foreigner Loan Fast processing & approval (Malaysian & Filipino) ⚠Strictly  Kept Confidential⚠ Contact & inquiries 📞📞📞 📞. Whatsapp +65 82676817 📞. Whatsapp +65 86489767  📞. Wechat (微信）- 6582676817")
+tryYourOwnMessage(" 💁🏻💁🏻‍♂🔈🔉🔊💰💰💰		🎖🎖🎖		ASIA ONLINE SPORTBOOKS 📲🖥		ONLINE SPORTSBET      ⚽⚾🏀🏈🏉🎾🎱🎳⛳🏌⛹🏐🏑🏒🏓		^Cash/Credit📲💻	LIVE CASINO AND JACKPOT GAMES	🎲⚀⚁⚂⚃⚄⚅🎲	🃏🃏🃏🎰🎰🎰	^Cash/Credit📲💻	HORSE RACING ACCOUNT	🥇🥈🐎🏇🐎🏇🐎	^Cash only📲💻		CASH^ 💰💰💰💰💰- Only Cash top up & Withdrawal accepted (Daily)	*Cash 💰💰💰     🏧Top Up - 24hrs		*Withdrawal 💰💰💰      🏧1300hrs - 1900hrs	CREDIT^^ (negotiable)		*Weekly Settlement    (Win/Loss)	*Credits given depending on income proof		ALL INTERESTED 🚻🆗🙋‍♂🙋‍♂🙋🙋🙋🙋‍♂🙋‍♂🙋‍♂	TO CHECK OUT LATEST PROMOTION WITH OUR FRIENDLY STAFFS @	📳 whatsapp 👍👍👍 (MARK)	65 84201070		 📞 65 84215787		Working hours 24hrs		THIS IS AN AUTO GENERATED NUMBER ONLY REPLY TO 84215787")
