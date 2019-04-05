@@ -97,12 +97,12 @@ for d in validationSet:
     currIndex += 1
 
     knn = findKNN(trainingSet, d, k)   
-    if judge(knn) == d[0]:
+    if judge(knn) == d[0]:  # If the predicted output is the same as the one in training data
         correct += 1
     else:
         wrong += 1
-        print(judge(knn))
-        print(d[1])
+        # print(judge(knn))
+        # print(d[1])
     # print("\n")
 
 accuracy = correct / (correct + wrong)
