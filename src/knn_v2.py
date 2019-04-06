@@ -34,6 +34,7 @@ print("Size of validation set = " + str(len(validationSet)))
 def getSimilarity(record1, record2):
     len1 = len(record1[1].split())
     len2 = len(record2[1].split())
+
     num_common = 0
     d = dict()
     for word in record1[1].split():
@@ -85,10 +86,10 @@ def judge(knn):
 
 correct = 0
 wrong = 0    
-k = 13
+k = 11
 
 
-for k in range(71, 80, 2):
+for k in range(1, 130, 2):
 
     # for tracking
     currIndex = 0
@@ -113,8 +114,9 @@ for k in range(71, 80, 2):
     print("correct: ",correct)
     print("wrong: ",wrong)
     print("training data accuracy: ",accuracy)
+    print("\n\n")
     
-    with open(r"C:\Users\jylee\Documents\[LOCAL]NUS Work Data\CS3244\SMS Spam Project\data\kValidationError_v2.csv", 'a') as csvFile:
+    with open(r"C:\Users\jylee\Documents\[LOCAL]NUS Work Data\CS3244\SMS Spam Project\data\kValidationError.csv", 'a') as csvFile:
         writer = csv.writer(csvFile)
         writer.writerow([k, 1-accuracy])
         csvFile.close()
@@ -124,23 +126,30 @@ for k in range(71, 80, 2):
 ####
 # Try your own zaphalang messages
 ####
-# numHamTotal = int(0)
-# numSpamTotal = int(0)
-# def tryYourOwnMessage(message):
-#     global numHamTotal, numSpamTotal
-#     d = ['', message, '']
-#     knn = findKNN(trainingSet, d, k)
-#     print("RESULT OF: -\n" + message + '\n=== ' + judge(knn) + ' ===\n')
-#     if judge(knn) == 'ham':
-#         numHamTotal += 1
-#     else:
-#         numSpamTotal += 1
+numHamTotal = int(0)
+numSpamTotal = int(0)
+def tryYourOwnMessage(message):
+    message.split()
+    i = 0
+    while i < len(message):
+        if not message[i].isalnum() and not message[i] == ' ':
+            message = message[:i] + " " + message[i+1:]
+        i+=1
 
-# #HAMS
+    global numHamTotal, numSpamTotal
+    d = ['', message, '']
+    knn = findKNN(trainingSet, d, k)
+    print("RESULT OF: -\n" + message + '\n=== ' + judge(knn) + ' ===\n')
+    if judge(knn) == 'ham':
+        numHamTotal += 1
+    else:
+        numSpamTotal += 1
+
+#HAMS
 # tryYourOwnMessage("<Rewards> StarHub: Starting from 100 points, you can indulge in these irresistible 1-for-1 deals with Dunkin Donuts, Ellenborough market cafe, Chicken Up& more. Grab them now at www.starhub.com/redeem . T&Cs apply. To UNSUB, reply UNSUB")
 # tryYourOwnMessage("<Rewards> StarHub: Get your hands on our 1-for-1 lunch buffet, Korean chicken wings, Bingsoo dessert to keep cool in this hot weather & more! Check it out at www.starhub.com/redeem now. T&Cs apply. To UNSUB, reply UNSUB")
 
-# #SPAMS
+#SPAMS
 # tryYourOwnMessage("INSTANT BET, INSTANT CASH FOR ONLINE SPORTSBOOK ONLINE LIVE CASINO/SLOTS HORSE RACING CLICK LINK TO APPLY http:api.whatsapp.com/send?phone=6582818137")
 # tryYourOwnMessage("Hi bro, just now u said that u need a soccer betting account, u prefer m8 or cmd? By the way, I hv horse racing, live casino and slot games too. U keen? Max")
 # tryYourOwnMessage("🔥We say YES when the bank say No🔥 💲Let us support your loan 🏧Flash approval + Instant Cash 🏦Offering Monthly Loan Up To 20 Months Repayment Term         💰💰💰💰💰💰💰💰 $5000 x 20Mnths =$320,    $8000 x 20Mnths =$480, $10,000 x 20Mnths = $600 Consolidate Loan    ☎Enquiries Call  +65 8627-342 Whatsapp        +65 8279-4186")
@@ -151,6 +160,7 @@ for k in range(71, 80, 2):
 # tryYourOwnMessage("NEWLY OFFER ! 10K x36 MONTHS=330 20K x 36 MONTHS =660 50K x 60 MONTHS=970 100K x 60 MONTHS =1940 whatsapp me on 87321404 Aaron")
 # tryYourOwnMessage("360GLOBAL >Guaranteed Payout >Credit/Cash >High BONUS >SportBook >LiveCasino/Slot >Horse&Hound Racing CLICK LINK")
 # tryYourOwnMessage("ABK Credit. We provide Business and Personal Loans. Monthly Installment Packages. 👉🏻 S$10000= 900 x 12 Months 👉🏻 S$20000= 1800 x 12 Months 👉🏻 S$30000= 2750 x 12 Months Up to 100k Do visit our website for more information, www.abkcredit.com Whatsapp : Kelvin Lim Click on the Below Link to message me without saving my number. https://wa.me/6584141640 This is an System Generated Message. For Enquiry , Please Click on Not Now👇🏻 at Bottom and Contact with us Directly.")
+# tryYourOwnMessage("{ONLINE BETTING} > WORLD CUP > LIVE CASINO > HORSE Cash (20% BONUS) or Credit Acc (10% REBATE) Avail https://api.whatsapp.com/send?phone=6591740819")
 
 # print()
 # print("Total number of HAM = " + str(numHamTotal))
