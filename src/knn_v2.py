@@ -97,8 +97,8 @@ def judge(knn):
 ####
 import random
 random.shuffle(trainingSet)
-# for i in range(len(trainingSet)-1, int(0.8*len(trainingSet)), -1):
-#     validationSet.append(trainingSet.pop())
+for i in range(len(trainingSet)-1, int(0.8*len(trainingSet)), -1):
+    validationSet.append(trainingSet.pop())
 
 print("Size of training set = " + str(len(trainingSet)))
 print("Size of validation set = " + str(len(validationSet)))
@@ -113,40 +113,40 @@ wrong = 0
 k = 7   # Optimal k-value is 7 for this application
 
 
-# for k in range(7, 41, 200):
+for k in range(1, 41, 2):
 
-#     # for tracking
-#     currIndex = 0
-#     import copy
-#     for d in validationSet:
-#         if (currIndex % 100 == 0):
-#             print("==== Currently processing " + str(currIndex) + " of " + str(len(validationSet)) + " validation sets ====")
-#         currIndex += 1
+    # for tracking
+    currIndex = 0
+    import copy
+    for d in validationSet:
+        if (currIndex % 100 == 0):
+            print("==== Currently processing " + str(currIndex) + " of " + str(len(validationSet)) + " validation sets ====")
+        currIndex += 1
 
-#         knn = findKNN(trainingSet, d, k)   
-#         if judge(knn) == d[0]:  # If the predicted output is the same as the one in training data
-#             correct += 1
-#         else:
-#             wrong += 1
-#             # print(judge(knn))
-#             # print(d[1])
-#         # print("\n")
+        knn = findKNN(trainingSet, d, k)   
+        if judge(knn) == d[0]:  # If the predicted output is the same as the one in training data
+            correct += 1
+        else:
+            wrong += 1
+            # print(judge(knn))
+            # print(d[1])
+        # print("\n")
 
-#     accuracy = correct / (correct + wrong)
+    accuracy = correct / (correct + wrong)
 
-#     print("\nk-value: ", k)
-#     print("correct: ",correct)
-#     print("wrong: ",wrong)
-#     print("training data accuracy: ",accuracy)
-#     print("\n\n")
+    print("\nk-value: ", k)
+    print("correct: ",correct)
+    print("wrong: ",wrong)
+    print("training data accuracy: ",accuracy)
+    print("\n\n")
 
-#     correct = wrong = 0
+    correct = wrong = 0
     
-    # # Write to CSV file for purpose of analyzing
-    # with open(r"C:\Users\jylee\Documents\[LOCAL]NUS Work Data\CS3244\SMS Spam Project\data\kValidationError.csv", 'a') as csvFile:
-    #     writer = csv.writer(csvFile)
-    #     writer.writerow([k, 1-accuracy])
-    #     csvFile.close()
+    # Write to CSV file for purpose of analyzing
+    with open(r"C:\Users\jylee\Documents\[LOCAL]NUS Work Data\CS3244\SMS Spam Project\data\kValidationError.csv", 'a') as csvFile:
+        writer = csv.writer(csvFile)
+        writer.writerow([k, 1-accuracy])
+        csvFile.close()
 
 
 
