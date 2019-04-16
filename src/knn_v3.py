@@ -1,3 +1,9 @@
+##################
+# Difference between knn_v2 and knn_v3: -
+#   knn_v2: Randomly shuffles and takes 20% of the training set as the validation set.
+#   knn_v3: Randomly shuffles, then splits the data into 10 blocks. This implements 10-fold cross validation.
+##################
+
 import pandas as pd
 import csv
 import os
@@ -155,41 +161,6 @@ for k in range(1, 31, 2):
 
 
 
-    # # for tracking
-    # currIndex = 0
-    # import copy
-    # for d in validationSet:
-    #     if (currIndex % 100 == 0):
-    #         print("==== Currently processing " + str(currIndex) + " of " + str(len(validationSet)) + " validation sets ====")
-    #     currIndex += 1
-
-    #     knn = findKNN(trainingSet, d, k)   
-    #     if judge(knn) == d[0]:  # If the predicted output is the same as the one in training data
-    #         correct += 1
-    #     else:
-    #         wrong += 1
-    #         # print(judge(knn))
-    #         # print(d[1])
-    #     # print("\n")
-
-    # accuracy = correct / (correct + wrong)
-
-    # print("\nk-value: ", k)
-    # print("correct: ",correct)
-    # print("wrong: ",wrong)
-    # print("training data accuracy: ",accuracy)
-    # print("\n\n")
-
-    # correct = wrong = 0
-    
-    # # Write to CSV file for purpose of analyzing
-    # with open(r"C:\Users\jylee\Documents\[LOCAL]NUS Work Data\CS3244\SMS Spam Project\data\kValidationError.csv", 'a') as csvFile:
-    #     writer = csv.writer(csvFile)
-    #     writer.writerow([k, 1-accuracy])
-    #     csvFile.close()
-
-
-
 ####
 # Try your own zaphalang messages
 ####
@@ -208,24 +179,4 @@ def tryYourOwnMessage(message):
         numSpamTotal += 1
 
 
-#HAMS
-# tryYourOwnMessage("<Rewards> StarHub: Starting from 100 points, you can indulge in these irresistible 1-for-1 deals with Dunkin Donuts, Ellenborough market cafe, Chicken Up& more. Grab them now at www.starhub.com/redeem . T&Cs apply. To UNSUB, reply UNSUB")
-# tryYourOwnMessage("<Rewards> StarHub: Get your hands on our 1-for-1 lunch buffet, Korean chicken wings, Bingsoo dessert to keep cool in this hot weather & more! Check it out at www.starhub.com/redeem now. T&Cs apply. To UNSUB, reply UNSUB")
-# tryYourOwnMessage("Students registering for Special Term Part I modules, pls use new sys: ModReg@EduRec from 18-26 Mar. Refer www.nus.edu.sg/registrar/events/special-term.html")
-
-# #SPAMS
-# tryYourOwnMessage("INSTANT BET, INSTANT CASH FOR ONLINE SPORTSBOOK ONLINE LIVE CASINO/SLOTS HORSE RACING CLICK LINK TO APPLY http:api.whatsapp.com/send?phone=6582818137")
-# tryYourOwnMessage("Hi bro, just now u said that u need a soccer betting account, u prefer m8 or cmd? By the way, I hv horse racing, live casino and slot games too. U keen? Max")
-# tryYourOwnMessage("🔥We say YES when the bank say No🔥 💲Let us support your loan 🏧Flash approval + Instant Cash 🏦Offering Monthly Loan Up To 20 Months Repayment Term         💰💰💰💰💰💰💰💰 $5000 x 20Mnths =$320,    $8000 x 20Mnths =$480, $10,000 x 20Mnths = $600 Consolidate Loan    ☎Enquiries Call  +65 8627-342 Whatsapp        +65 8279-4186")
-# tryYourOwnMessage("💲💲💲Ucash Credit💲💲💲 www.ucash77.com 🔥Personal Loan Flexible repayment singapore 🔥Foreigner Loan Fast processing & approval (Malaysian & Filipino) ⚠Strictly  Kept Confidential⚠ Contact & inquiries 📞📞📞 📞. Whatsapp +65 82676817 📞. Whatsapp +65 86489767  📞. Wechat (微信）- 6582676817")
-# tryYourOwnMessage(" 💁🏻💁🏻‍♂🔈🔉🔊💰💰💰		🎖🎖🎖		ASIA ONLINE SPORTBOOKS 📲🖥		ONLINE SPORTSBET      ⚽⚾🏀🏈🏉🎾🎱🎳⛳🏌⛹🏐🏑🏒🏓		^Cash/Credit📲💻	LIVE CASINO AND JACKPOT GAMES	🎲⚀⚁⚂⚃⚄⚅🎲	🃏🃏🃏🎰🎰🎰	^Cash/Credit📲💻	HORSE RACING ACCOUNT	🥇🥈🐎🏇🐎🏇🐎	^Cash only📲💻		CASH^ 💰💰💰💰💰- Only Cash top up & Withdrawal accepted (Daily)	*Cash 💰💰💰     🏧Top Up - 24hrs		*Withdrawal 💰💰💰      🏧1300hrs - 1900hrs	CREDIT^^ (negotiable)		*Weekly Settlement    (Win/Loss)	*Credits given depending on income proof		ALL INTERESTED 🚻🆗🙋‍♂🙋‍♂🙋🙋🙋🙋‍♂🙋‍♂🙋‍♂	TO CHECK OUT LATEST PROMOTION WITH OUR FRIENDLY STAFFS @	📳 whatsapp 👍👍👍 (MARK)	65 84201070		 📞 65 84215787		Working hours 24hrs		THIS IS AN AUTO GENERATED NUMBER ONLY REPLY TO 84215787")
-# tryYourOwnMessage("NEWLY COMPANY OPEN AREA ON SERANGOON 10K x36 MONTHS=330 20K x 36 MONTHS =660 50K x36 MONTHS=1600 100K x 36 MONTHS =3350 whatsapp me on 87321404 Bosco")
-# tryYourOwnMessage("We provide online Sports Bet/Horse Racing/Live Casino Games with Daily Withdrawal.50% Welcome Bonus. Please WHATSAPP Winston For More Details at 83179087.")
-# tryYourOwnMessage("NEWLY OFFER ! 10K x36 MONTHS=330 20K x 36 MONTHS =660 50K x 60 MONTHS=970 100K x 60 MONTHS =1940 whatsapp me on 87321404 Aaron")
-# tryYourOwnMessage("360GLOBAL >Guaranteed Payout >Credit/Cash >High BONUS >SportBook >LiveCasino/Slot >Horse&Hound Racing CLICK LINK")
-# tryYourOwnMessage("ABK Credit. We provide Business and Personal Loans. Monthly Installment Packages. 👉🏻 S$10000= 900 x 12 Months 👉🏻 S$20000= 1800 x 12 Months 👉🏻 S$30000= 2750 x 12 Months Up to 100k Do visit our website for more information, www.abkcredit.com Whatsapp : Kelvin Lim Click on the Below Link to message me without saving my number. https://wa.me/6584141640 This is an System Generated Message. For Enquiry , Please Click on Not Now👇🏻 at Bottom and Contact with us Directly.")
-# tryYourOwnMessage("{ONLINE BETTING} > WORLD CUP > LIVE CASINO > HORSE Cash (20% BONUS) or Credit Acc (10% REBATE) Avail https://api.whatsapp.com/send?phone=6591740819")
-
-# print("\n  For K = " + str(k) + ":")
-# print("Total number of HAM = " + str(numHamTotal))
-# print("Total number of SPAM = " + str(numSpamTotal))
+# tryYourOwnMessage("Type your message here.")
