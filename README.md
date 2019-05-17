@@ -12,3 +12,4 @@ File contents list: -
 | [knn_v3.py](../master/src/knn_v3.py)  | Contains the source code for k-NN implementation. This version implements 10-fold cross validation. |
 | [Training data](../master/data/spam.csv) | Contains the training data used to classify SMS messages. |
 | [Experiment results](../master/data/kValidation%20Results.xlsx) | Contains the experimental accuracy results for classifying messages using k-NN. (Note: x-axis denotes k-value, y-axis denotes validation error) |
+
